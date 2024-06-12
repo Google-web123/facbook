@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات المستخدم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+        .user-info-container {
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #3E426A;
+            text-align: right;
+            margin: 15px;
+            padding: 15px;
+        }
+        .user-info-container h2 {
+            margin-bottom: 20px;
+        }
+        .user-info-container p {
+            background-color: #e7e7e7;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var userInfos = JSON.parse(localStorage.getItem('userInfos')) || [];
+            var container = document.getElementById('user-info-list');
+            userInfos.forEach(function(userInfo) {
+                var userDiv = document.createElement('div');
+                userDiv.classList.add('user-info-container');
+
+                var nameP = document.createElement('p');
+                nameP.textContent = 'اسم المستخدم: ' + userInfo.name;
+                userDiv.appendChild(nameP);
+
+                var emailP = document.createElement('p');
+                emailP.textContent = 'البريد الإلكتروني: ' + userInfo.email;
+                userDiv.appendChild(emailP);
+
+                var passwordP = document.createElement('p');
+                passwordP.textContent = 'كلمة السر: ' + userInfo.password;
+                userDiv.appendChild(passwordP);
+
+                var phoneP = document.createElement('p');
+                phoneP.textContent = 'رقم الهاتف: ' + userInfo.phone;
+                userDiv.appendChild(phoneP);
+
+                var addressP = document.createElement('p');
+                addressP.textContent = 'العنوان: ' + userInfo.address;
+                userDiv.appendChild(addressP);
+
+                container.appendChild(userDiv);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="user-info-list">
+        <h2>معلومات المستخدمين</h2>
+    </div>
+</body>
+</html>
